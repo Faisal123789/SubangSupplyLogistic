@@ -29,10 +29,10 @@ function getMinWorkDaysDate(workDaysToAdd: number): string {
 }
 
 export default function RequestOrderModal({ isOpen, onClose }: RequestOrderModalProps) {
-  const { lang, language, t } = useLanguage();
+  // Hanya ambil 'language' dan 't' (menghapus 'lang' yang bikin error TypeScript)
+  const { language, t } = useLanguage();
 
-  // Memastikan deteksi bahasa fleksibel (Mendukung 'en', 'EN', 'id', 'ID')
-  const currentLang = (lang || language || 'id').toString().toLowerCase();
+  const currentLang = (language || 'id').toString().toLowerCase();
 
   const minDate = useMemo(() => getMinWorkDaysDate(14), []);
 
@@ -106,7 +106,7 @@ _Mohon konfirmasi dan estimasi penawaran harga (Quotation). Terima kasih._`;
           </div>
           <button
             onClick={onClose}
-            className="text-slate-300 hover:text-white bg-blue-800 hover:bg-blue-700 w-9 h-9 rounded-full flex items-center justify-center transition"
+            className="text-slate-300 hover:text-white bg-blue-800 hover:bg-blue-700 w-9 h-9 rounded-full flex items-center justify-center transition cursor-pointer"
           >
             ✕
           </button>
@@ -256,13 +256,13 @@ _Mohon konfirmasi dan estimasi penawaran harga (Quotation). Terima kasih._`;
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 font-semibold text-sm hover:bg-slate-100 transition"
+              className="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-600 font-semibold text-sm hover:bg-slate-100 transition cursor-pointer"
             >
               {t('Batal', 'Cancel')}
             </button>
             <button
               type="submit"
-              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-2.5 rounded-xl shadow-md hover:shadow-emerald-600/20 transition flex items-center gap-2 text-sm"
+              className="bg-emerald-600 hover:bg-emerald-500 text-white font-bold px-6 py-2.5 rounded-xl shadow-md hover:shadow-emerald-600/20 transition flex items-center gap-2 text-sm cursor-pointer"
             >
               <span>{t('Kirim Order via WhatsApp', 'Send Order via WhatsApp')}</span>
               <span>&rarr;</span>
