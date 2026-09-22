@@ -17,10 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id">
+    <html lang="id" suppressHydrationWarning>
       <body className={inter.className} suppressHydrationWarning>
         <LanguageProvider>
-          {/* PASTI KAN NAVBAR ADA DI SINI */}
           <Navbar />
           {children}
         </LanguageProvider>

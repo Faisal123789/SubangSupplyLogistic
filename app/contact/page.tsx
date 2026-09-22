@@ -25,8 +25,22 @@ export default function ContactPage() {
               <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl text-xl">📱</div>
               <div>
                 <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">WhatsApp / Telepon</p>
-                <p className="text-sm font-bold text-slate-900">+62 813-1155-8121</p>
-                <p className="text-sm font-bold text-slate-900 mt-1">+62 811-1111-8220</p>
+                <a 
+                  href="https://wa.me/6281311558121" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block text-sm font-bold text-slate-900 hover:text-emerald-600 transition-colors"
+                >
+                  +62 813-1155-8121
+                </a>
+                <a 
+                  href="https://wa.me/6281111118220" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block text-sm font-bold text-slate-900 mt-1 hover:text-emerald-600 transition-colors"
+                >
+                  +62 811-1111-8220
+                </a>
               </div>
             </div>
 
@@ -34,7 +48,12 @@ export default function ContactPage() {
               <div className="p-3 bg-emerald-50 text-emerald-600 rounded-xl text-xl">✉️</div>
               <div>
                 <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">{isEn ? 'Official Email' : 'Email Resmi'}</p>
-                <p className="text-sm font-bold text-slate-900">subangsupplylog@gmail.com</p>
+                <a 
+                  href="mailto:subangsupplylog@gmail.com"
+                  className="text-sm font-bold text-slate-900 hover:text-emerald-600 transition-colors"
+                >
+                  subangsupplylog@gmail.com
+                </a>
               </div>
             </div>
 
