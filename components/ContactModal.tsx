@@ -1,108 +1,93 @@
 'use client';
 
+import React from 'react';
 import { useLanguage } from '@/context/LanguageContext';
 
-export default function ContactPage() {
+interface ContactModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   const { t } = useLanguage();
 
+  if (!isOpen) return null;
+
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-800">
-      {/* HERO BANNER BIRU LAUT */}
-      <section className="bg-blue-950 text-white py-16 px-6 text-center border-b border-blue-900">
-        <h1 className="text-3xl md:text-5xl font-extrabold mb-4 text-white">
-          {t('Hubungi Kami', 'Contact Us')}
-        </h1>
-        <p className="text-blue-200 text-sm md:text-base max-w-xl mx-auto">
-          {t('Tim operasional kami siap melayani kebutuhan kapal Anda 24/7.', 'Our operational team is ready to serve your vessel 24/7.')}
-        </p>
-      </section>
-
-      {/* SECTION KONTAK DAN PETA */}
-      <section className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          
-          {/* KARTU INFORMASI KONTAK */}
-          <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6">
-            <h2 className="text-2xl font-bold text-slate-900 border-b pb-3">
-              {t('Layanan Pelanggan & WhatsApp', 'Customer Service & WhatsApp')}
-            </h2>
-            
-            <div className="space-y-4">
-              <div>
-                <span className="text-xs text-slate-400 uppercase font-bold tracking-wider">{t('Hotline WhatsApp 24/7', '24/7 WhatsApp Hotline')}</span>
-                <p className="text-xl font-bold text-emerald-600">+62 813 1155 8121</p>
-              </div>
-
-              <div>
-                <span className="text-xs text-slate-400 uppercase font-bold tracking-wider">{t('Email Resmi', 'Official Email')}</span>
-                <p className="text-base font-semibold text-slate-800">procurement@subangsupplylog.com</p>
-              </div>
-
-              <div>
-                <span className="text-xs text-slate-400 uppercase font-bold tracking-wider">{t('Alamat Kantor', 'Office Address')}</span>
-                <p className="text-sm font-semibold text-slate-800 leading-relaxed mt-1">
-                  Gg. Cendrawasih No.4, Karanganyar, Kec. Subang, Kabupaten Subang, Jawa Barat 41211
-                </p>
-              </div>
-
-              <div>
-                <span className="text-xs text-slate-400 uppercase font-bold tracking-wider">{t('Wilayah Operasional', 'Operational Area')}</span>
-                <p className="text-sm font-semibold text-slate-800">Subang Smartport Patimban & Around Ports</p>
-              </div>
-            </div>
-
-            <a
-              href="https://wa.me/6281311558121?text=Hello%20CV.%20Subang%20Supply%20Logistic"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block w-full text-center bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl shadow transition"
-            >
-              {t('Chat WhatsApp Sekarang (+62 813 1155 8121)', 'Chat on WhatsApp Now (+62 813 1155 8121)')}
-            </a>
+    <div className="fixed inset-0 z-[120] flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm animate-fade-in">
+      <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-md relative overflow-hidden">
+        
+        {/* Header */}
+        <div className="bg-blue-900 text-white p-5 flex items-center justify-between">
+          <div>
+            <span className="text-[10px] font-bold text-cyan-300 uppercase tracking-widest">
+              Subang Supply & Logistics
+            </span>
+            <h3 className="font-bold text-lg mt-0.5">
+              {t('Hubungi Kami', 'Contact Us')}
+            </h3>
           </div>
+          <button
+            onClick={onClose}
+            className="text-slate-300 hover:text-white bg-blue-800 hover:bg-blue-700 w-8 h-8 rounded-full flex items-center justify-center transition cursor-pointer"
+          >
+            ✕
+          </button>
+        </div>
 
-          {/* DETAIL PROSEDUR OPERASIONAL */}
-          <div className="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm space-y-6 flex flex-col justify-between">
+        {/* Body */}
+        <div className="p-6 space-y-4">
+          <p className="text-sm text-slate-600 mb-4 leading-relaxed">
+            {t(
+              'Silakan hubungi tim operasional kami untuk menanyakan ketersediaan produk, spesifikasi khusus, atau bantuan lebih lanjut.',
+              'Please contact our operational team to inquire about product availability, custom specifications, or further assistance.'
+            )}
+          </p>
+
+          <a
+            href="https://wa.me/6281311558121"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-3.5 p-4 rounded-xl border border-emerald-200 bg-emerald-50 hover:bg-emerald-100 transition group"
+          >
+            <div className="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-sm">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.347-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.876 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+              </svg>
+            </div>
             <div>
-              <h2 className="text-2xl font-bold text-slate-900 border-b pb-3 mb-4">
-                {t('Prosedur Pemesanan (H-14)', 'Advanced Order Procedure (14-Day)')}
-              </h2>
-              <p className="text-slate-600 text-sm leading-relaxed mb-4">
-                {t(
-                  'Untuk menjamin kesegaran bahan makanan dan spesifikasi peralatan teknis deck/engine yang akurat, pemesanan dapat dikirimkan H-14 kerja sebelum kapal bersandar.',
-                  'To guarantee item freshness and accurate technical specifications, orders can be submitted up to 14 working days before vessel berthing.'
-                )}
-              </p>
+              <p className="text-[11px] font-bold text-emerald-800 uppercase tracking-wider mb-0.5">WhatsApp / Telepon</p>
+              <p className="text-sm font-bold text-slate-800">+62 813-1155-8121</p>
             </div>
+          </a>
 
-            <div className="p-5 bg-blue-50 border border-blue-100 rounded-xl text-xs text-blue-900 space-y-2">
-              <p className="font-bold text-sm text-blue-950">⚓ CV. Subang Supply Logistic</p>
-              <p className="italic">"Serve with Trust" — Marine Provisions & General Ship Supplies</p>
+          <a
+            href="mailto:subangsupplylog@gmail.com"
+            className="flex items-center gap-3.5 p-4 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 transition group"
+          >
+            <div className="w-10 h-10 rounded-full bg-slate-800 text-white flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform shadow-sm">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
             </div>
-          </div>
-
+            <div>
+              <p className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-0.5">Email Resmi</p>
+              <p className="text-sm font-bold text-slate-800">subangsupplylog@gmail.com</p>
+            </div>
+          </a>
         </div>
 
-        {/* GOOGLE MAPS EMBEDDED */}
-        <div className="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
-          <h3 className="text-lg font-bold text-slate-900 mb-3 px-2">
-            📍 {t('Lokasi Kantor Kami', 'Our Office Location')}
-          </h3>
-          <div className="w-full h-80 rounded-xl overflow-hidden border border-slate-200">
-            <iframe
-              title="Google Maps Subang Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.708892601931!2d107.7634!3d-6.5585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e693b82159670d9%3A0x6a1b2c3d4e5f6g7h!2sGg.%20Cendrawasih%20No.4%2C%20Karanganyar%2C%20Kec.%20Subang%2C%20Kabupaten%20Subang%2C%20Jawa%20Barat%2041211!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen={false}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
+        {/* Footer */}
+        <div className="bg-slate-50 p-5 border-t border-slate-100 flex justify-end">
+          <button
+            onClick={onClose}
+            className="px-6 py-2.5 text-xs font-bold text-slate-600 bg-white border border-slate-300 rounded-xl hover:bg-slate-100 hover:text-slate-900 transition shadow-sm cursor-pointer"
+          >
+            {t('Tutup', 'Close')}
+          </button>
         </div>
 
-      </section>
-    </main>
+      </div>
+    </div>
   );
 }
